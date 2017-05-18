@@ -1,0 +1,53 @@
+/* add your CSS here */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#card {
+  border: 1px solid #aaa;
+  width: 300px;
+  padding: 10px;
+  margin: 10px auto;
+  box-shadow: 10px 10px #eee;
+}
+
+#name {
+  padding: 10px;
+  font-size: 2em;
+  margin: 0;
+
+}
+
+.images {
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+  /*box-shadow: 1px 1px 2px #000000;*/
+}
+
+#information {
+  padding: 10px;
+  border: 1px solid #aaa;
+  width: 280px;
+  /*box-shadow: 1px 1px 2px #000000;*/
+}
+
+#facts {
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
+#items {
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.label {
+  font-weight: bold;
+}
+
+#description {
+  padding: 10px 0;
+}
