@@ -94,6 +94,7 @@ this.checkWin = function (x, y, mark){
 
 }
 
+// test
 var game = new ticTacToeGame();
 game.makeMove(0, 0, 'O');
 game.makeMove(1, 1, 'O');
