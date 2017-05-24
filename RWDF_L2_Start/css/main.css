@@ -59,12 +59,6 @@ ul {
   margin-right: auto;
 }
 
-.header__inner a{
-  /*margin-top: 15px;*/
-  padding: 10px;
-  float: right;
-}
-
 .header__logo {
   height: 72px;
   margin-right: 1em;
@@ -74,7 +68,7 @@ ul {
 
 .header__title {
   font-weight: 300;
-  font-size: 1.5em;
+  font-size: 4em;
   margin: 0.5em 0.25em;
   display: inline-block;
   color: #212121;
@@ -91,11 +85,6 @@ ul {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  position: absolute;
-  transform: translate(100%,0);
-  transition: transform 0.3s ease;
-  background-color: #fff;
-  z-index: 100;
 }
 
 nav.open {
@@ -110,14 +99,12 @@ nav.open {
 
 .nav__item {
   box-sizing: border-box;
-  /*display: block;*/
-  /*display: inline-block;*/
-  /*width: 24%;*/
+  display: inline-block;
+  width: 24%;
   text-align: center;
   line-height: 24px;
   padding: 24px;
   text-transform: uppercase;
-  /*text-align: center;*/
 }
 
 .nav a {
@@ -149,7 +136,7 @@ main {
  * Content
  *
  */
-a, button {
+.btn-lg {
   padding: 1.5em;
 }
 
@@ -389,97 +376,4 @@ footer li {
 footer a {
   text-decoration: none;
   color: #333;
-}
-@media screen and (min-width: 750px) {
-  .header__title {
-    font-size: 4em;
-  }
-
-  .header__inner a {
-    display: none;
-  }
-
-  .nav {
-    position: inherit;
-    transform: translate(0, 0);
-    background-color: inherit;
-  }
-
-  .nav__item {
-    display: inline-block;
-    width: 24%;
-  }
-
-  .content {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .hero {
-    width: 66.6%;
-    order: 0;
-  }
-
-  .weather {
-    width: 33.3%;
-    order: 1;
-  }
-
-  .top-news {
-    width: 100%;
-    order: 2;
-  }
-
-  .scores {
-    width: 100%;
-    order: 3;
-  }
-
-  .recent-news {
-    width: 100%;
-    order: 4;
-  }
-}
-
-@media screen and (min-width: 950px) {
-  .hero {
-    width: 50%;
-    order: 0;
-  }
-
-  .top-news {
-    width: 50%;
-    order: 1;
-  }
-
-  .scores {
-    width: 66.6%;
-    order: 2;
-  }
-
-  .weather {
-    width: 33.3%;
-    order: 3;
-  }
-
-  .recent-news {
-    width: 100%;
-    order: 4;
-  }
-}
-
-@media screen and (min-width: 960px) {
-  .header__inner {
-    width: 960px;
-    margin: 0 auto;
-  }
-
-  #drawer {
-    width: 960px;
-    margin: 0 auto;
-  }
-  main {
-    width: 960px;
-    margin: 0 auto;
-  }
 }

@@ -1,0 +1,110 @@
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+#menu {
+  display: none;
+}
+@media screen and (max-width: 549px) {
+  .header__logo {
+    height: 48px;
+  }
+
+  .header__title {
+    margin-left: 0;
+    font-size: 2em;
+    vertical-align: bottom;
+  }
+
+  .nav {
+    position: absolute;
+    transform: translate(-100%,0);
+    transition: transform 0.3s ease;
+    background-color: #fff;
+    z-index: 100;
+  }
+  nav.open {
+    transform: translate(0,0);
+  }
+
+  .nav__item {
+    width: 100%;
+    display: list-item;
+    border-bottom: 1px solid #e0e0e0;
+
+  }
+
+  #menu {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    color: #e0e0e0;
+  }
+}
+@media screen and (min-width: 550px) {
+
+  .nav__item {
+    display: inline-block;
+    width: 24%;
+  }
+
+  .hero {
+    width: 60%;
+    /*order: 0;*/
+  }
+
+  .weather {
+    width: 40%;
+    order: 1;
+  }
+
+  .top-news {
+    width: 100%;
+    order: 2;
+  }
+
+  .scores {
+    width: 100%;
+    order: 3;
+  }
+
+  .recent-news {
+    width: 100%;
+    order: 4;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .hero {
+    width: 50%;
+    order: 0;
+  }
+
+  .top-news {
+    width: 50%;
+    order: 1;
+  }
+
+  .scores {
+    width: 60%;
+    order: 2;
+  }
+
+  .weather {
+    width: 40%;
+    order: 3;
+  }
+
+  .recent-news {
+    width: 100%;
+    order: 4;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .header__inner, .nav, main {
+    width: 960px;
+    margin: 0 auto;
+  }
+}
