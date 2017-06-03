@@ -6,7 +6,7 @@ var ctx = c.getContext('2d');
 // image.src='http://via.placeholder.com/350x150';
 // image.onload = function() {
 //   console.log('Loaded image');
-//   ctx.drawImage(image, 0, 0, 350, 150);
+//   ctx.drawImage(image, 0, 0);
 //   var savedImage = c.toDataURL();
 //   console.log(savedImage);
 //   window.open(savedImage);
@@ -37,8 +37,22 @@ var ctx = c.getContext('2d');
 // ctx.fillRect(0,0, 10,10);
 // ctx.rotate(Math.PI/2);
 
-ctx.strokeStyle = '#000';
-ctx.font = '36px Impact';
-ctx.textAlign = 'center';
-ctx.lineWidth = '3px';
-ctx.strokeText('CANVAS MEMES!', c.width/2, 40);
+// ctx.strokeStyle = '#000';
+// ctx.font = '36px Impact';
+// ctx.textAlign = 'center';
+// ctx.lineWidth = '3px';
+// ctx.strokeText('CANVAS MEMES!', c.width/2, 40);
+function changeNthPixelToGreen(imageData, n) {
+  var index = (n)*4;
+  imageData.data[index] = 0;
+  imageData.data[index+1] = 255;
+  imageData.data[index+2] = 0;
+  imageData.data[index+3] = 255;
+}
+var imgData = ctx.getImageData(0, 0, c.width, c.height);
+var dataLength = imgData.width * imgData.height;
+for(var n = 0; n < dataLength; n+=10) {
+  changeNthPixelToGreen(imgData, n);
+}
+console.log(imgData);
+ctx.putImageData(imgData, 0, 0);
