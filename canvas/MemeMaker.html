@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>MemeMaker-Simple</title>
-    
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,13 +11,16 @@
     #image-container {
       display: flex;
     }
+    canvas {
+      border: 1px solid #000;
+    }
   </style>
 </head>
 
 <body>
 
   <div>
-    <input type="file" id="file" />  
+    <input type="file" id="file" />
   </div>
   <div id="image-container">
     <canvas width="500" height="500"></canvas>
@@ -33,54 +36,71 @@
     function textChangeListener (evt) {
       var id = evt.target.id;
       var text = evt.target.value;
-      
+
       if (id == "topLineText") {
         window.topLineText = text;
       } else {
         window.bottomLineText = text;
       }
-      
+
       redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
     }
-    
+
     function redrawMeme(image, topLine, bottomLine) {
+      image = image || new Image();
       // Get Canvas2DContext
       var canvas = document.querySelector('canvas');
       var ctx = canvas.getContext("2d");
-      // Your code here
+
+      ctx.font = '36px Impact';
+      ctx.fillStyle = '#FFF';
+      ctx.strokeStyle = '#000';
+      ctx.textAlign = 'center';
+      ctx.clearRect(0,0, canvas.width, canvas.height);
+
+      ctx.drawImage(image, 0, 0, 500, 500);
+      if(topLine){
+        ctx.fillText(topLine, canvas.width/2,36);
+        ctx.strokeText(topLine, canvas.width/2,36);
+      }
+      if(bottomLine) {
+        ctx.fillText(bottomLine, canvas.width/2,450);
+        ctx.strokeText(bottomLine, canvas.width/2,450);
+
+      }
     }
-    
+
     function saveFile() {
       window.open(document.querySelector('canvas').toDataURL());
     }
-    
+
 
     function handleFileSelect(evt) {
       var canvasWidth = 500;
       var canvasHeight = 500;
       var file = evt.target.files[0];
-      
-      
-      
+
+
+
       var reader = new FileReader();
       reader.onload = function(fileObject) {
         var data = fileObject.target.result;
-        
+
         // Create an image object
         var image = new Image();
         image.onload = function() {
-          
+
           window.imageSrc = this;
           redrawMeme(window.imageSrc, null, null);
         }
-        
+
         // Set image data to background image.
         image.src = data;
         console.log(fileObject.target.result);
       };
       reader.readAsDataURL(file)
     }
-    
+
     window.topLineText = "";
     window.bottomLineText = "";
     var input1 = document.getElementById('topLineText');
