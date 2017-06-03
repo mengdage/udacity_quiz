@@ -42,17 +42,37 @@ var ctx = c.getContext('2d');
 // ctx.textAlign = 'center';
 // ctx.lineWidth = '3px';
 // ctx.strokeText('CANVAS MEMES!', c.width/2, 40);
-function changeNthPixelToGreen(imageData, n) {
-  var index = (n)*4;
-  imageData.data[index] = 0;
-  imageData.data[index+1] = 255;
-  imageData.data[index+2] = 0;
-  imageData.data[index+3] = 255;
-}
-var imgData = ctx.getImageData(0, 0, c.width, c.height);
-var dataLength = imgData.width * imgData.height;
-for(var n = 0; n < dataLength; n+=10) {
-  changeNthPixelToGreen(imgData, n);
-}
-console.log(imgData);
-ctx.putImageData(imgData, 0, 0);
+// function changeNthPixelToGreen(imageData, n) {
+//   var index = (n)*4;
+//   imageData.data[index] = 0;
+//   imageData.data[index+1] = 255;
+//   imageData.data[index+2] = 0;
+//   imageData.data[index+3] = 255;
+// }
+// var imgData = ctx.getImageData(0, 0, c.width, c.height);
+// function paintGreen(imageData) {
+//   var dataLength = imageData.width * imageData.height;
+//   for(var n = 0; n < dataLength; n+=10) {
+//     changeNthPixelToGreen(imageData, n);
+//   }
+//   ctx.putImageData(imageData, 0, 0);
+// }
+// paintGreen(imgData);
+// console.log(imgData);
+
+document.addEventListener('DOMContentLoaded', function(){
+  var v = document.querySelector('video');
+  var canvas = document.querySelector('canvas');
+  v.addEventListener('loadedmetadata', function() {
+    canvas.width = this.videoWidth;
+    canvas.height = this.videoHeight;
+  });
+
+  var draw = function() {
+    canvas.getContext('2d').drawImage(v, 0, 0);
+  }
+
+  v.addEventListener('play', function(){
+    draw();
+  })
+})
