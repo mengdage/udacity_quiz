@@ -60,19 +60,27 @@ var ctx = c.getContext('2d');
 // paintGreen(imgData);
 // console.log(imgData);
 
-document.addEventListener('DOMContentLoaded', function(){
-  var v = document.querySelector('video');
-  var canvas = document.querySelector('canvas');
-  v.addEventListener('loadedmetadata', function() {
-    canvas.width = this.videoWidth;
-    canvas.height = this.videoHeight;
-  });
-
-  var draw = function() {
-    canvas.getContext('2d').drawImage(v, 0, 0);
-  }
-
-  v.addEventListener('play', function(){
-    draw();
-  })
-})
+// document.addEventListener('DOMContentLoaded', function(){
+//   var v = document.querySelector('video');
+//   var canvas = document.querySelector('canvas');
+//   v.addEventListener('loadedmetadata', function() {
+//     canvas.width = this.videoWidth;
+//     canvas.height = this.videoHeight;
+//   });
+//
+//   var draw = function() {
+//     canvas.getContext('2d').drawImage(v, 0, 0);
+//     requestAnimationFrame(draw);
+//   }
+//
+//   v.addEventListener('play', function(){
+//     draw();
+//   })
+// })
+function handleMouseClick(e){
+  console.log(e);
+  var x = e.clientX - c.offsetLeft;
+  var y = e.clientY - c.offsetTop;
+  console.log('('+x+', '+y+')');
+}
+c.addEventListener('click', handleMouseClick);
