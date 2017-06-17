@@ -198,6 +198,53 @@ function initMap() {
 
   var infoWindow = new google.maps.InfoWindow();
 
+  // create a DrawingManager
+  var drawingManager = new google.maps.drawing.DrawingManager({
+    drawingMode: google.maps.drawing.OverlayType.POLYGON,
+    drawingControl: true,
+    drawingControlOptions: {
+      position: google.maps.ControlPosition.TOP_CENTER,
+      drawingModes: [google.maps.drawing.OverlayType.CIRCLE, google.maps.drawing.OverlayType.POLYGON]
+    },
+    circleOptions: {
+      draggable: true,
+      // editable: true
+    },
+    polygonOptions: {
+      draggable: true,
+      // editable: true
+    }
+
+  });
+  var drawingBounds = null;
+  drawingManager.addListener('overlaycomplete', function(event){
+    if(drawingBounds !== null) {
+      drawingBounds.setMap(null);
+      // Clear markers
+      hideMarkers();
+    }
+    // console.log(event);
+    drawingBounds = event.overlay;
+    // show markers that are in drawingBounds
+    searchWithDrawingBounds();
+    drawingBounds.addListener('dragend', function(){
+      hideMarkers();
+      searchWithDrawingBounds();
+    });
+  });
+  function searchWithDrawingBounds() {
+    markers.forEach(function(marker) {
+      if(drawingBounds.getBounds) {
+        if(drawingBounds.getBounds().contains(marker.getPosition())) {
+          marker.setMap(map);
+        }
+      } else { // polygon
+        if(google.maps.geometry.poly.containsLocation(marker.getPosition(), drawingBounds)) {
+          marker.setMap(map);
+        }
+      }
+    });
+  }
   // set toggle button for drawing tools
   document.getElementById('toggle-drawing').addEventListener('click', function() {
     if(drawingManager.map) {
