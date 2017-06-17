@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Google Map</title>
+   <link rel="stylesheet" href="app.css">
+ </head>
+ <body>
+   <div class="container">
+     <div class="options-box">
+       <h1>Find Places in New York</h1>
+       <div>
+         <input  id="show-listings" type="button" name="" value="Show Listings">
+         <input id="hide-listings" type="button" name="" value="Hide Listings">
+         <hr>
+         <input type="button" id="toggle-drawing" value="Drawing tools">
+       </div>
+     </div>
+     <div id="map"></div>
+   </div>
+   <div class="staticMap">
+   </div>
+
+   <script asyn defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTASu4wSSGtlOvRn7rBiBxEl4RJr2Yreo&libraries=drawing,geometry&callback=initMap" ></script>
+   <script type="text/javascript" src='app.js'> </script>
+ </body>
+</html>
