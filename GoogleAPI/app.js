@@ -340,4 +340,48 @@ function initMap() {
   document.getElementById('show-listings').addEventListener('click', showMarkers);
   document.getElementById('hide-listings').addEventListener('click', hideMarkers);
 
+
+}
+
+
+
+
+var originPlace = 'Florence';
+var destPlace = 'Milan';
+var waypoints = ['Genoa', 'Bologna', 'Venice'];
+var directionRequest = {
+  origin: originPlace,
+  destination: destPlace,
+  travelMode: 'DRIVING',
+  waypoints: [
+    {
+      location: waypoints[0],
+      stopover: true
+    },
+    {
+      location: waypoints[1],
+      stopover: true
+    },
+    {
+      location: waypoints[2],
+      stopover: true
+    }
+  ],
+  optimizeWaypoints: true
+};
+function initMap2() {
+  var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: new google.maps.LatLng(41.850033, -87.6500523),
+    zoom: 7
+  });
+  directionsDisplay.setMap(map);
+
+  directionsService.route(directionRequest, function(result, status){
+    if(status === 'OK') {
+      directionsDisplay.setDirections(result);
+      console.log(result);
+    }
+  });
 }
